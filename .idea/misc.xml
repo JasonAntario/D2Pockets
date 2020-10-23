@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../pdal" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../pdal_test" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../sbt_test" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../SBT_exampl" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../SBT_test" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../java-master" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../java-master2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../sbt_final" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../scala-android" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../scala-android-master" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="ScalaSbtSettings">
+    <option name="customVMEnabled" value="true" />
+    <option name="customVMPath" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+  </component>
+</project>

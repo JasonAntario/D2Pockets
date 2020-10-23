@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MarginElements">
+        <item name="android:layout_marginBottom">25dp</item>
+    </style>
+
+    <style name="ApplicationName">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

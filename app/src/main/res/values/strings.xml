@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">D2 POCKETS</string>
+    <string name="auth_login">Login</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_signIn_button">Sign In</string>
+    <string name="auth_no_connection">Not Connected</string>
+    <string name="auth_connection">Connected</string>
+</resources>
