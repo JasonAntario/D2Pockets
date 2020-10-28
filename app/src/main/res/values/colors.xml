@@ -11,5 +11,6 @@
     <color name="screen_background">#FAFAFA</color>
     <color name="sign_in_button">#B8C5CF</color>
     <color name="auth_et_background">#44AE48</color>
+    <color name="indicator">#3F51B5</color>
 
 </resources>

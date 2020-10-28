@@ -4,6 +4,12 @@
         <item name="android:layout_marginBottom">25dp</item>
     </style>
 
+    <style name="Inventory_margin">
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
     <style name="ApplicationName">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/black</item>

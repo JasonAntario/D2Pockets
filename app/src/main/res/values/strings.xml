@@ -1,8 +1,19 @@
 <resources>
-    <string name="app_name">D2 POCKETS</string>
+    <string name="app_name">D2 POCKETS
+    </string>
     <string name="auth_login">Login</string>
     <string name="auth_password">Password</string>
     <string name="auth_signIn_button">Sign In</string>
     <string name="auth_no_connection">Not Connected</string>
     <string name="auth_connection">Connected</string>
+    <string name="name_placeholder">Item Name</string>
+    <string name="warlock">WARLOCK</string>
+    <string name="hunter">HUNTER</string>
+    <string name="titan">TITAN</string>
+    <string-array name="weapon_names">
+        <item>Thorn</item>
+        <item>Tractor Cannon</item>
+        <item>Ace of Spades</item>
+        <item>Lumina</item>
+    </string-array>
 </resources>
