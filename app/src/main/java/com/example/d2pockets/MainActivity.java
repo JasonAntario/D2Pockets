@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 conHelper.getCharachterIDs("jasonantario");
+                conHelper.getCharacterInfo();
+                conHelper.getItemInfo(2);
             } catch (IOException e) {
                 e.printStackTrace();
             }

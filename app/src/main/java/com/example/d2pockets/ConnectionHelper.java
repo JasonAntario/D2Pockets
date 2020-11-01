@@ -1,10 +1,8 @@
 package com.example.d2pockets;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -13,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -25,6 +22,8 @@ public class ConnectionHelper {
     private String apiKey = "a81f82870a4a4b0aa302632f91768e6a";
     private String membershipId;  //playerId
     private String membershipType; //platform (3 - Steam, 2 - PS, -1 - All)
+    private List<String> characters;
+    private JsonArray itemArray;
 
     public JsonObject getResponse(String endpoint) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -59,12 +58,25 @@ public class ConnectionHelper {
     public List<String> getCharachterIDs(String username) throws IOException {
         getMembershipIdAndType(username);
         JsonObject jsonObject = getProfile();
-        List<String> charachterIDs = new ArrayList<>();
+        List<String> characterIDs = new ArrayList<>();
         JsonArray jsonArray = jsonObject.getAsJsonObject("Response").getAsJsonObject("profile").getAsJsonObject("data").getAsJsonArray("characterIds");
         for (int i = 0; i < jsonArray.size(); i++) {
-            charachterIDs.add(jsonArray.get(i).getAsString());
+            characterIDs.add(jsonArray.get(i).getAsString());
         }
-        charachterIDs.forEach(x -> Log.e("!@#", x));
-        return charachterIDs;
+        characters = new ArrayList<>(characterIDs);
+        characters.forEach(x -> Log.e("!@#", x));
+        return characters;
+    }
+
+    public void getCharacterInfo() throws IOException {
+        JsonObject object = getResponse(String.format(endpoints.GET_CHARACTER_INFO, membershipType, membershipId, characters.get(0)));
+        itemArray = object.getAsJsonObject("Response").getAsJsonObject("equipment").getAsJsonObject("data").getAsJsonArray("items");
+        Log.e("!@#", itemArray.get(0).getAsJsonObject().get("itemInstanceId").toString().replaceAll("\"", ""));
+    }
+
+    public void getItemInfo(int itemPosInArray) throws IOException {
+        JsonObject object = getResponse(String.format(endpoints.GET_ITEM, membershipType, membershipId, itemArray.get(itemPosInArray).getAsJsonObject().get("itemInstanceId").toString().replaceAll("\"", "")));
+        Log.e("!@#", object.toString());
+
     }
 }
