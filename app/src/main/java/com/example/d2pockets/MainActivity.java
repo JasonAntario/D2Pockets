@@ -1,30 +1,27 @@
 package com.example.d2pockets;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TabHost;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -33,39 +30,35 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
     private Button btnSignIn;
     private TextView tvResponse;
+    private Endpoints endpoints = new Endpoints();
     private String apiKey = "a81f82870a4a4b0aa302632f91768e6a";
-    private String URL = "https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/-1/jasonantario/";
-    private RecyclerView rvInventory;
+    private ConnectionHelper conHelper = new ConnectionHelper();
+    private ProgressBar pbConnection;
+    boolean check = false;
 
-    private List<String> weaponNames;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inventory_layout);
+        setContentView(R.layout.activity_main);
         btnSignIn = findViewById(R.id.btnSignIn);
+        pbConnection = findViewById(R.id.pbConnection);
         tvResponse = findViewById(R.id.tvResponse);
-        weaponNames = Arrays.asList(getResources().getStringArray(R.array.weapon_names));
-        rvInventory = findViewById(R.id.inventory_recycler_view);
-
-        InvAdapter invAdapter = new InvAdapter(this, weaponNames);
-        rvInventory.setAdapter(invAdapter);
-        rvInventory.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void signIn(View view) {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    OkHttpClient client = new OkHttpClient();
-//                    Request request = new Request.Builder().url(URL).header("X-API-KEY", apiKey).build();
-//                    Response response = null;
-//                    response = client.newCall(request).execute();
-//                    Log.e("!@#", response.body().string());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }}).start();
-
+        pbConnection.setVisibility(View.VISIBLE);
+        new Thread(() -> {
+            try {
+                conHelper.getCharachterIDs("jasonantario");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }

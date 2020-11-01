@@ -17,15 +17,15 @@
             style="@style/MarginElements"
             android:layout_width="match_parent"
             android:layout_height="221dp"
-            android:src="@drawable/traveler_logo"
-            android:contentDescription="traveler_logo_image" />
+            android:contentDescription="@string/logo_description"
+            android:src="@drawable/traveler_logo" />
 
         <TextView
             style="@style/ApplicationName"
             android:layout_width="wrap_content"
-            android:text="@string/app_name"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="40dp"
+            android:text="@string/app_name" />
 
         <Button
             android:id="@+id/btnSignIn"
@@ -36,13 +36,19 @@
             android:onClick="signIn"
             android:text="@string/auth_signIn_button" />
 
-        <TextView
-            android:id="@+id/tvResponse"
+        <ProgressBar
+            android:id="@+id/pbConnection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/auth_no_connection"
-            android:textSize="20sp" />
+            android:visibility="invisible" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connected"
+            android:visibility="invisible"
+            android:textSize="20sp"
+            android:id="@+id/tvResponse"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

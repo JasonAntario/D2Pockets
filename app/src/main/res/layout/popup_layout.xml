@@ -6,16 +6,17 @@
     app:cardCornerRadius="5dp">
 
     <RelativeLayout
+        android:id="@+id/panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:id="@+id/panel">
+        android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/weapon_icon"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@color/indicator"
+            android:contentDescription="Item Icon"
             android:foregroundGravity="bottom" />
 
         <TextView
@@ -27,13 +28,29 @@
             android:text="@string/name_placeholder"
             android:textSize="20sp" />
 
+        <ImageView
+            android:id="@+id/elemental_type"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/weapon_name"
+            android:contentDescription="Elemental Type" />
+
+        <ImageView
+            android:id="@+id/bullet_type"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/elemental_type"
+            android:contentDescription="Bullet Type" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weapon_name"
-            android:layout_toEndOf="@+id/weapon_icon"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/weapon_icon"
             android:orientation="horizontal">
 
             <ImageView
@@ -41,31 +58,40 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@color/auth_et_background"/>
+                android:background="@color/auth_et_background"
+                android:contentDescription="First Perk" />
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@color/auth_et_background"/>
+                android:background="@color/auth_et_background"
+                android:contentDescription="Second Perk" />
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@color/auth_et_background"/>
+                android:background="@color/auth_et_background"
+                android:contentDescription="Third Perk" />
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@color/auth_et_background"/>
+                android:background="@color/auth_et_background"
+                android:contentDescription="Forth Perk" />
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@color/auth_et_background"/>
+                android:background="@color/auth_et_background"
+                android:contentDescription="Fifth Perk" />
         </LinearLayout>
 
     </RelativeLayout>
