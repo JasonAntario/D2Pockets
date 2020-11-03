@@ -1,4 +1,4 @@
-package com.example.d2pockets;
+package com.example.d2pockets.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,14 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.d2pockets.R;
+
 import java.util.List;
 
-public class InvAdapter extends RecyclerView.Adapter<InvAdapter.InvViewHolder> {
+public class WeaponAdapter extends RecyclerView.Adapter<WeaponAdapter.InvViewHolder> {
 
     Context context;
     List<String> weaponNames;
 
-    public InvAdapter(Context ct, List<String> wNames) {
+    public WeaponAdapter(Context ct, List<String> wNames) {
         context = ct;
         weaponNames = wNames;
     }
@@ -31,7 +33,7 @@ public class InvAdapter extends RecyclerView.Adapter<InvAdapter.InvViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull InvViewHolder holder, int position) {
-        holder.tv.setText(weaponNames.get(position));
+        holder.tvItemName.setText(weaponNames.get(position));
     }
 
     @Override
@@ -40,11 +42,11 @@ public class InvAdapter extends RecyclerView.Adapter<InvAdapter.InvViewHolder> {
     }
 
     public class InvViewHolder extends RecyclerView.ViewHolder {
-        TextView tv;
+        TextView tvItemName;
 
         public InvViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.weapon_name);
+            tvItemName = itemView.findViewById(R.id.weapon_name);
         }
     }
 }

@@ -1,8 +1,11 @@
-package com.example.d2pockets;
+package com.example.d2pockets.helpers;
 
 import android.util.Log;
 
+import com.example.d2pockets.constants.Endpoints;
+import com.example.d2pockets.item_instance.WeaponItem;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -10,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -24,6 +26,7 @@ public class ConnectionHelper {
     private String membershipType; //platform (3 - Steam, 2 - PS, -1 - All)
     private List<String> characters;
     private JsonArray itemArray;
+    private final String BASE_URL = "https://bungie.net";
 
     public JsonObject getResponse(String endpoint) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -68,15 +71,34 @@ public class ConnectionHelper {
         return characters;
     }
 
-    public void getCharacterInfo() throws IOException {
-        JsonObject object = getResponse(String.format(endpoints.GET_CHARACTER_INFO, membershipType, membershipId, characters.get(0)));
+    public void getCharacterInfo(int character) throws IOException {
+        JsonObject object = getResponse(String.format(endpoints.GET_CHARACTER_INFO, membershipType, membershipId, characters.get(character)));
         itemArray = object.getAsJsonObject("Response").getAsJsonObject("equipment").getAsJsonObject("data").getAsJsonArray("items");
-        Log.e("!@#", itemArray.get(0).getAsJsonObject().get("itemInstanceId").toString().replaceAll("\"", ""));
+//        itemArray.forEach(x->Log.e("!@#", x.toString()));
     }
 
-    public void getItemInfo(int itemPosInArray) throws IOException {
-        JsonObject object = getResponse(String.format(endpoints.GET_ITEM, membershipType, membershipId, itemArray.get(itemPosInArray).getAsJsonObject().get("itemInstanceId").toString().replaceAll("\"", "")));
-        Log.e("!@#", object.toString());
+    public JsonObject getItemInfo(int itemPosInArray) throws IOException {
+        String item = itemArray.get(itemPosInArray).getAsJsonObject().get("itemInstanceId").toString().replaceAll("\"", "");
+        JsonObject itemObject = getResponse(String.format(endpoints.GET_ITEM, membershipType, membershipId, item));
+        Log.e("!@#", itemObject.toString());
+        return itemObject;
+    }
 
+    public String getManifest() throws IOException {
+        String manifestLink = getResponse(endpoints.GET_MANIFEST).getAsJsonObject("Response").getAsJsonObject("mobileWorldContentPaths").get("en").toString().replaceAll("\"", "");
+        return BASE_URL + manifestLink;
+    }
+
+    public List<String> getItemPerks(int itemPosition) throws IOException {
+        List<String> perkIcons = new ArrayList<>();
+        JsonObject weapon = getItemInfo(itemPosition);
+        JsonArray perks = weapon.getAsJsonObject("Response").getAsJsonObject("perks").getAsJsonObject("data").getAsJsonArray("perks");
+        for (int i = 0; i < perks.size(); i++) {
+            String perk = perks.get(i).getAsJsonObject().get("iconPath").toString().replaceAll("\"", "");
+            if (!perk.isEmpty())
+                perkIcons.add(BASE_URL + perk);
+        }
+        perkIcons.forEach(x -> Log.e("!@#%&", x));
+        return perkIcons;
     }
 }

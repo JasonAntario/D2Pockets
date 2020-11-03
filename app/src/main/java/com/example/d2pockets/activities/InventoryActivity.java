@@ -1,12 +1,13 @@
-package com.example.d2pockets;
+package com.example.d2pockets.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.d2pockets.adapters.WeaponAdapter;
+import com.example.d2pockets.R;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +25,8 @@ public class InventoryActivity extends AppCompatActivity {
         weaponNames = Arrays.asList(getResources().getStringArray(R.array.weapon_names));
         rvInventory = findViewById(R.id.inventory_recycler_view);
 
-        InvAdapter invAdapter = new InvAdapter(this, weaponNames);
-        rvInventory.setAdapter(invAdapter);
+        WeaponAdapter weaponAdapter = new WeaponAdapter(this, weaponNames);
+        rvInventory.setAdapter(weaponAdapter);
         rvInventory.setLayoutManager(new LinearLayoutManager(this));
 
     }

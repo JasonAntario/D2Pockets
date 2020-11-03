@@ -14,10 +14,18 @@
         <item>Thorn</item>
         <item>Ace of Spades</item>
         <item>Lumina</item>
+        <item>Gjalahorn</item>
+        <item>Crimson</item>
+        <item>Tractor Cannon</item>
+        <item>No time to explain</item>
+        <item>Whisper of the Worm</item>
+        <item>Outbreak Prime</item>
     </string-array>
 
     <string name="endpoint_get_user">https://www.bungie.net/Platform/Destiny2/SearchDestinyPlayer/-1/%1$s/</string>
     <string name="endpoint_get_profile">https://www.bungie.net/Platform/Destiny2/%1$s/Profile/%2$s/?components=100</string>
     <string name="connected">Connected</string>
     <string name="logo_description">Traveler Logo</string>
+    <string name="error_empty_filed">Field is empty</string>
+    <string name="username">Username</string>
 </resources>
